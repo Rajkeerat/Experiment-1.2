@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Bank</title>
+</head>
+<body>
+  <h2>Simple Bank</h2>
+
+  <p>Balance: <span id="balance">0</span></p>
+
+  <input id="amount" type="number" min="1" placeholder="Amount">
+  <button onclick="deposit()">Deposit</button>
+  <button onclick="withdraw()">Withdraw</button>
+
+  <p id="msg"></p>
+
+  <script>
+    let balance = 0;
+
+    function updateBalance() {
+      document.getElementById('balance').textContent = balance;
+    }
+
+    function deposit() {
+      const value = Number(document.getElementById('amount').value);
+      if (value <= 0 || isNaN(value)) {
+        document.getElementById('msg').textContent = 'Enter a positive amount.';
+        return;
+      }
+      balance += value;
+      updateBalance();
+      document.getElementById('msg').textContent = 'Deposit successful.';
+    }
+    function withdraw() {
+    const value = Number(document.getElementById('amount').value);
+
+    if (value <= 0 || isNaN(value)) {
+        alert("Enter a positive amount.");
+        return;
+    }
+
+    if (value > balance) {
+        alert("❌ Insufficient balance.\nPlease click OK to continue.");
+        return;
+    }
+
+    balance -= value;
+    updateBalance();
+    alert("✅ Withdrawal successful.");
+}
+</script>
+
+  </script>
+</body>
+</html>
